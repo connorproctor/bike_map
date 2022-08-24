@@ -97,7 +97,7 @@
             </div>
             <div id='sexy-legend' class="d-inline-block">
                 <div>
-                    <div class="dot" style="background-color: pink;"></div>
+                    <div class="dot" style="background-color: DeepPink;"></div>
                     Todd Gloria's ✨Sexy✨ Streets Projects
                 </div>
             </div>
@@ -128,7 +128,7 @@
 
             
             let pavings = L.geoJSON([], { style: {color: 'gray', weight: 1} });
-            let sexyStreets = L.geoJSON([], { style: {color: 'pink', weight: 1} });
+            let sexyStreets = L.geoJSON([], { style: {color: 'DeepPink', weight: 1} });
             let existingBikeways = L.geoJSON([], { 
                 style: function(feature) {
                     switch (feature.properties["ROUTE"]) {
@@ -195,7 +195,7 @@
                 [document.getElementById('paving-legend').outerHTML]: pavings,
                 [document.getElementById('sexy-legend').outerHTML]: sexyStreets,
             };
-            let layerControl = L.control.layers({}, layers).addTo(map);
+            let layerControl = L.control.layers({}, layers, { collapsed: true }).addTo(map);
             layerControl.expand();
 
             const overlayReq = fetchJSON('/FY2023_overlay_bikeways.geojson')
