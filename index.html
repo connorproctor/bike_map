@@ -169,7 +169,7 @@
         url: "https://webmaps.sandiego.gov/arcgis/rest/services/ECP_CIPTracking_CIPExternal/MapServer/1",
         where: "CIP_STAT = 'Design' OR CIP_STAT = 'Planning'",
         style: (feature) => {
-          return { color: "darkgray", weight: 1 };
+          return { color: "darkgray", weight: 1.5 };
         },
       });
       upcomingCIP.bindPopup((feature) => {
@@ -182,7 +182,7 @@
         style: { color: "slategray", weight: 1.5 },
       });
       let sexyStreets = L.geoJSON([], {
-        style: { color: "DeepPink", weight: 1 },
+        style: { color: "DeepPink", weight: 1.5 },
       });
       let slurryBikeways = L.geoJSON([], {
         style: function (feature) {
