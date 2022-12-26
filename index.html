@@ -176,9 +176,17 @@
         return tooltip;
       });
 
-      let pavings = L.geoJSON([], {
+      let pavings = L.esri.featureLayer({
+        url: "https://webmaps.sandiego.gov/arcgis/rest/services/Hosted/Planned_paving_projects/FeatureServer/0",
         style: { color: "slategray", weight: 1.5 },
       });
+      pavings.bindPopup((feature) => {
+        const tooltip = Object.entries(feature.feature.properties)
+          .map(([key, value]) => `<div><b>${key}</b>: ${value}</div>`)
+          .join(" ");
+        return tooltip;
+      });
+
       let sexyStreets = L.geoJSON([], {
         style: { color: "DeepPink", weight: 1.5 },
       });
@@ -328,18 +336,6 @@
             properties: { Type: "Slurry", ...f["properties"] },
           }))
         );
-        resetLayerOrder();
-      });
-
-      const pavingReq = fetchJSON("/planned_paving.geojson");
-      pavingReq.then((r) => {
-        pavings.addData(r["features"]);
-        pavings.bindPopup((feature) => {
-          const tooltip = Object.entries(feature.feature.properties)
-            .map(([key, value]) => `<div><b>${key}</b>: ${value}</div>`)
-            .join(" ");
-          return tooltip;
-        });
         resetLayerOrder();
       });
 
