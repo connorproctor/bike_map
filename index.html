@@ -88,8 +88,8 @@
   <body>
     <div id="map"></div>
     <div id="legend-elements" style="display: hidden">
-      <div id="overlay-legend" class="d-inline-block">
-        <div>Upcoming Overlay Bikeways (FY2023)</div>
+      <div id="paving-bikeway-legend" class="d-inline-block">
+        <div>Upcoming City Repaving Bikeways (FY2023)</div>
         <div class="ms-2">
           <div class="dot" style="background-color: #19c615"></div>
           Protected Bikeway (Class IV)
@@ -102,9 +102,6 @@
           <div class="dot" style="background-color: #f65b5b"></div>
           Sharrow (Class III)
         </div>
-      </div>
-      <div id="slurry-legend" class="d-inline-block">
-        <div>Upcoming Slurry Bikeways (FY2023)</div>
       </div>
       <div id="sandag-legend" class="d-inline-block">
         <div>Upcoming SANDAG Bikeways</div>
@@ -123,7 +120,7 @@
       <div id="paving-legend" class="d-inline-block">
         <div>
           <div class="dot" style="background-color: slategray"></div>
-          All Upcoming Paving Projects
+          Upcoming City Street Repavings
         </div>
       </div>
       <div id="sexy-legend" class="d-inline-block">
@@ -178,13 +175,14 @@
           .join(" ");
         return tooltip;
       });
+
       let pavings = L.geoJSON([], {
         style: { color: "slategray", weight: 1.5 },
       });
       let sexyStreets = L.geoJSON([], {
         style: { color: "DeepPink", weight: 1.5 },
       });
-      let slurryBikeways = L.geoJSON([], {
+      let pavingBikeways = L.geoJSON([], {
         style: function (feature) {
           switch (feature.properties.bike_class) {
             case "IV":
@@ -212,34 +210,12 @@
           }
         },
       }).addTo(map);
-      let overlayBikeways = L.geoJSON([], {
-        style: function (feature) {
-          switch (feature.properties.bike_class) {
-            case "IV":
-              return {
-                color: "#19c615",
-                weight: 5,
-                dashArray: "4, 4",
-                lineCap: "butt",
-              };
-            case "II":
-              return {
-                color: "#f0bd09",
-                weight: 3,
-                dashArray: "4, 4",
-                lineCap: "butt",
-              };
-            case "III":
-            default:
-              return {
-                color: "#f65b5b",
-                weight: 1.5,
-                dashArray: "4, 4",
-                lineCap: "butt",
-              };
-          }
-        },
-      }).addTo(map);
+      pavingBikeways.bindPopup((feature) => {
+        const tooltip = Object.entries(feature.feature.properties)
+          .map(([key, value]) => `<div><b>${key}</b>: ${value}</div>`)
+          .join(" ");
+        return tooltip;
+      });
 
       let sandagUpcoming = L.esri
         .featureLayer({
@@ -319,8 +295,8 @@
       });
 
       const layers = {
-        [document.getElementById("overlay-legend").outerHTML]: overlayBikeways,
-        [document.getElementById("slurry-legend").outerHTML]: slurryBikeways,
+        [document.getElementById("paving-bikeway-legend").outerHTML]:
+          pavingBikeways,
         [document.getElementById("sandag-legend").outerHTML]: sandagUpcoming,
         [document.getElementById("existing-legend").outerHTML]:
           existingBikeways,
@@ -333,29 +309,25 @@
         .addTo(map);
       layerControl.expand();
 
-      const overlayReq = fetchJSON("/FY2023_overlay_bikeways.geojson");
-      overlayReq.then((r) => {
-        overlayBikeways.addData(r["features"]);
-        overlayBikeways.bindPopup((feature) => {
-          const tooltip = Object.entries(feature.feature.properties)
-            .map(([key, value]) => `<div><b>${key}</b>: ${value}</div>`)
-            .concat("<div><b>Type</b>: Overlay</div>")
-            .join(" ");
-          return tooltip;
-        });
+      const overlayBikewayReq = fetchJSON("/FY2023_overlay_bikeways.geojson");
+      overlayBikewayReq.then((r) => {
+        pavingBikeways.addData(
+          r["features"].map((f) => ({
+            ...f,
+            properties: { Type: "Overlay", ...f["properties"] },
+          }))
+        );
         resetLayerOrder();
       });
 
-      const slurryReq = fetchJSON("/FY2023_slurry_bikeways.geojson");
-      slurryReq.then((r) => {
-        slurryBikeways.addData(r["features"]);
-        slurryBikeways.bindPopup((feature) => {
-          const tooltip = Object.entries(feature.feature.properties)
-            .map(([key, value]) => `<div><b>${key}</b>: ${value}</div>`)
-            .concat("<div><b>Type</b>: Slurry</div>")
-            .join(" ");
-          return tooltip;
-        });
+      const slurryBikewayReq = fetchJSON("/FY2023_slurry_bikeways.geojson");
+      slurryBikewayReq.then((r) => {
+        pavingBikeways.addData(
+          r["features"].map((f) => ({
+            ...f,
+            properties: { Type: "Slurry", ...f["properties"] },
+          }))
+        );
         resetLayerOrder();
       });
 
