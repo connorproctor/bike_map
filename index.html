@@ -169,27 +169,16 @@
           return { color: "darkgray", weight: 1.5 };
         },
       });
-      upcomingCIP.bindPopup((feature) => {
-        const tooltip = Object.entries(feature.feature.properties)
-          .map(([key, value]) => `<div><b>${key}</b>: ${value}</div>`)
-          .join(" ");
-        return tooltip;
-      });
 
       let pavings = L.esri.featureLayer({
         url: "https://webmaps.sandiego.gov/arcgis/rest/services/Hosted/Planned_paving_projects/FeatureServer/0",
         style: { color: "slategray", weight: 1.5 },
       });
-      pavings.bindPopup((feature) => {
-        const tooltip = Object.entries(feature.feature.properties)
-          .map(([key, value]) => `<div><b>${key}</b>: ${value}</div>`)
-          .join(" ");
-        return tooltip;
-      });
 
       let sexyStreets = L.geoJSON([], {
         style: { color: "DeepPink", weight: 1.5 },
       });
+
       let pavingBikeways = L.geoJSON([], {
         style: function (feature) {
           switch (feature.properties.bike_class) {
@@ -218,12 +207,6 @@
           }
         },
       }).addTo(map);
-      pavingBikeways.bindPopup((feature) => {
-        const tooltip = Object.entries(feature.feature.properties)
-          .map(([key, value]) => `<div><b>${key}</b>: ${value}</div>`)
-          .join(" ");
-        return tooltip;
-      });
 
       let sandagUpcoming = L.esri
         .featureLayer({
@@ -259,13 +242,6 @@
         })
         .addTo(map);
 
-      sandagUpcoming.bindPopup((feature) => {
-        const tooltip = Object.entries(feature.feature.properties)
-          .map(([key, value]) => `<div><b>${key}</b>: ${value}</div>`)
-          .join(" ");
-        return tooltip;
-      });
-
       let existingBikeways = L.esri
         .featureLayer({
           url: "https://services1.arcgis.com/HG80xaIVT1z1OdO5/ArcGIS/rest/services/iBikeMap/FeatureServer/1",
@@ -295,12 +271,21 @@
         })
         .addTo(map);
 
-      existingBikeways.bindPopup((feature) => {
-        const tooltip = Object.entries(feature.feature.properties)
-          .map(([key, value]) => `<div><b>${key}</b>: ${value}</div>`)
-          .join(" ");
-        return tooltip;
-      });
+      [
+        existingBikeways,
+        sandagUpcoming,
+        pavingBikeways,
+        pavings,
+        upcomingCIP,
+        sexyStreets,
+      ].forEach((layer) =>
+        layer.bindPopup((feature) => {
+          const tooltip = Object.entries(feature.feature.properties)
+            .map(([key, value]) => `<div><b>${key}</b>: ${value}</div>`)
+            .join(" ");
+          return tooltip;
+        })
+      );
 
       const layers = {
         [document.getElementById("paving-bikeway-legend").outerHTML]:
@@ -342,12 +327,6 @@
       const sexyStreetsReq = fetchJSON("/sexy_streets_merged.geojson");
       sexyStreetsReq.then((r) => {
         sexyStreets.addData(r["features"]);
-        sexyStreets.bindPopup((feature) => {
-          const tooltip = Object.entries(feature.feature.properties)
-            .map(([key, value]) => `<div><b>${key}</b>: ${value}</div>`)
-            .join(" ");
-          return tooltip;
-        });
         resetLayerOrder();
       });
 
