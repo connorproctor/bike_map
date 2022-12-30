@@ -63,16 +63,52 @@
     />
 
     <style>
-      body {
-        margin: 0;
-        padding: 0;
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
       }
+      * {
+        margin: 0;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+      }
+      img,
+      picture,
+      video,
+      canvas,
+      svg {
+        display: block;
+        max-width: 100%;
+      }
+      input,
+      button,
+      textarea,
+      select {
+        font: inherit;
+      }
+      p,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        overflow-wrap: break-word;
+      }
+      #root,
+      #__next {
+        isolation: isolate;
+      }
+
       #map {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        right: 0;
-        left: 0;
+        height: 75%;
       }
       .leaflet-control-layers-selector {
         vertical-align: top;
@@ -83,11 +119,157 @@
         border-radius: 50%;
         display: inline-block;
       }
+      .max-width-wrapper {
+        margin: 0 auto;
+        max-width: 1100px;
+        padding: 0 16px;
+      }
+      small {
+        font-size: 0.75em;
+      }
+      .text-muted a {
+        color: inherit;
+      }
+      .layer-info {
+        max-width: 700px;
+      }
+      footer {
+        padding-top: 5px;
+        border-top: 1px solid #cccccc;
+      }
     </style>
   </head>
   <body>
-    <div id="map"></div>
-    <div id="legend-elements" style="display: hidden">
+    <div class="max-width-wrapper">
+      <header>
+        <h1>San Diego Bikeways Map</h1>
+      </header>
+      <div>
+        <p>
+          Upcoming and existing bikeways, Street Repavings, and Capital
+          Improvement Projects (CIP) &#8212; all on one map. Including both
+          upcoming SANDAG and SD City bikeways.
+        </p>
+        <p>Use this tool to identify opportunities for new bikeways.</p>
+      </div>
+      <div id="map"></div>
+
+      <h3 class="mt-5">Map Layers</h3>
+      <div class="layer-info">
+        <div class="mb-3">
+          <h5 class="mb-0">
+            Upcoming City Repaving Bikeways
+            <small class="text-muted">Updated July 2022</small>
+          </h5>
+          <div class="ms-3">
+            <p class="m-0">
+              These are new bikeways that the city is planning to build as they
+              repave streets during FY2023 (July 2022-July 2023).
+            </p>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <h5 class="mb-0">
+            Upcoming SANDAG Bikeways
+            <small class="text-muted"
+              >Updated via
+              <a href="https://www.icommutesd.com/bike/BikeMap.aspx"
+                >iBikeMap</a
+              ></small
+            >
+          </h5>
+          <div class="ms-3">
+            <p class="m-0">
+              Bikeway construction planned by
+              <a href="https://sandag.org">SANDAG</a>. This dataset updates
+              automatically as SANDAG updates their maps.
+            </p>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <h5 class="mb-0">
+            Existing Bikeways
+            <small class="text-muted"
+              >Updated via
+              <a href="https://www.icommutesd.com/bike/BikeMap.aspx"
+                >iBikeMap</a
+              ></small
+            >
+          </h5>
+          <div class="ms-3">
+            <p class="m-0">
+              Existing bikeways in the San Diego region. Does not include
+              sharrows (class II) because they don't really count as bike
+              infrastructure.
+            </p>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <h5 class="mb-0">
+            Todd Gloria's &#x2728;Sexy&#x2728; Streets Projects
+            <small class="text-muted">Updated July 2022</small>
+          </h5>
+          <div class="ms-3">
+            <p class="m-0">
+              Special street repaving projects under the sexy street initiative.
+              Wouldn't the streets be even sexier with new bikeways?
+            </p>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <h5 class="mb-0">
+            Upcoming City Street Repaving Projects
+            <small class="text-muted"
+              >Updated via
+              <a href="https://streets.sandiego.gov"
+                >City of SD Streets Map</a
+              ></small
+            >
+          </h5>
+          <div class="ms-3">
+            <p class="m-0">
+              The city likes to add new bikeways when they repave streets, so it
+              can be effective to advocate for new bikeways on streets that the
+              city is already planning to repave.
+            </p>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <h5 class="mb-0">
+            Upcoming Capital Improvement Projects (CIP)
+            <small class="text-muted"
+              >Updated via
+              <a href="https://www.sandiego.gov/cip/projectinfo"
+                >City Projects Map</a
+              ></small
+            >
+          </h5>
+          <div class="ms-3">
+            <p class="m-0">
+              Upcoming city construction projects including major street
+              improvements, sewer and water-main replacements. CIP projects
+              often tear up streets and there's oppurtunity to advocate for new
+              bikeways during these projects.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <footer class="text-center">
+        <small class="ms-3">
+          Feedback or suggestions? hmu
+          <a href="https://twitter.com/connorproctor">@ConnorProctor</a>
+        </small>
+      </footer>
+    </div>
+
+    <!-- Hidden Legend Elements -->
+    <div id="legend-elements" style="display: none">
       <div id="paving-bikeway-legend" class="d-inline-block">
         <div>Upcoming City Repaving Bikeways (FY2023)</div>
         <div class="ms-2">
@@ -164,6 +346,7 @@
 
       let upcomingCIP = L.esri.featureLayer({
         url: "https://webmaps.sandiego.gov/arcgis/rest/services/ECP_CIPTracking_CIPExternal/MapServer/1",
+        fetchAllFeature: true,
         where: "CIP_STAT = 'Design' OR CIP_STAT = 'Planning'",
         style: (feature) => {
           return { color: "darkgray", weight: 1.5 };
@@ -172,6 +355,7 @@
 
       let pavings = L.esri.featureLayer({
         url: "https://webmaps.sandiego.gov/arcgis/rest/services/Hosted/Planned_paving_projects/FeatureServer/0",
+        fetchAllFeature: true,
         style: { color: "slategray", weight: 1.5 },
       });
 
@@ -211,6 +395,7 @@
       let sandagUpcoming = L.esri
         .featureLayer({
           url: "https://services1.arcgis.com/HG80xaIVT1z1OdO5/ArcGIS/rest/services/Bikeways_Coming_Soon/FeatureServer/2",
+          fetchAllFeature: true,
           style: (feature) => {
             switch (feature.properties["ROUTE"]) {
               case 1:
@@ -245,6 +430,7 @@
       let existingBikeways = L.esri
         .featureLayer({
           url: "https://services1.arcgis.com/HG80xaIVT1z1OdO5/ArcGIS/rest/services/iBikeMap/FeatureServer/1",
+          fetchAllFeature: true,
           style: (feature) => {
             switch (feature.properties["ROUTE"]) {
               case 1:
