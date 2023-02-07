@@ -152,12 +152,22 @@
         padding-top: 5px;
         border-top: 1px solid #cccccc;
       }
+
+      .embedded .hide-when-embedded {
+        display: none;
+      }
+      .embedded .max-width-wrapper {
+        padding: 0;
+      }
+      .embedded #map {
+        height: 600px;
+      }
     </style>
   </head>
   <body>
     <div class="max-width-wrapper">
       <header>
-        <h1>San Diego Bikeways Map</h1>
+        <h1 class="hide-when-embedded">San Diego Bikeways Map</h1>
       </header>
       <div>
         <p>
@@ -342,6 +352,11 @@
 
       function resetLayerOrder() {
         Object.values(layers).forEach((l) => l.bringToBack());
+      }
+
+      if (window.self != window.top) {
+        // In iFrame
+        document.body.classList.add("embedded");
       }
 
       var map = L.map("map", {
