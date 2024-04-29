@@ -216,7 +216,7 @@
 
       <div class="mb-3">
         <h5 class="mb-0">
-          Upcoming City Street Repaving Projects
+          Upcoming City Street Repaving Projects (2024 & 2025)
           <small class="text-muted">Updated via
             <a href="https://streets.sandiego.gov">City of SD Streets Map</a></small>
         </h5>
@@ -288,7 +288,7 @@
     <div id="paving-legend" class="d-inline-block">
       <div>
         <div class="dot" style="background-color: slategray"></div>
-        Upcoming City Street Repavings
+        Upcoming City Street Repavings (2024 & 2025)
       </div>
     </div>
     <div id="upcoming-cip" class="d-inline-block">
@@ -339,39 +339,39 @@
     });
 
     let pavings = L.esri.featureLayer({
-      url: "https://webmaps.sandiego.gov/arcgis/rest/services/Hosted/Planned_paving_projects/FeatureServer/0",
+      url: "https://webmaps.sandiego.gov/arcgis/rest/services/Hosted/Paving_projects_planned_per_street_segment/FeatureServer/0/query?where=((((LOWER(const_fy)%20LIKE%20%27%252024%25%27)%20OR%20(LOWER(const_fy)%20LIKE%20%27%252025%25%27)))%20AND%20(funding%20LIKE%20%27Funded%27))",
       fetchAllFeature: true,
       style: { color: "slategray", weight: 1.5 },
     });
 
-    let pavingBikeways = L.geoJSON([], {
-      style: function (feature) {
-        switch (feature.properties.bike_class) {
-          case "IV":
-            return {
-              color: "#19c615",
-              weight: 5,
-              dashArray: "4, 4",
-              lineCap: "butt",
-            };
-          case "II":
-            return {
-              color: "#f0bd09",
-              weight: 3,
-              dashArray: "4, 4",
-              lineCap: "butt",
-            };
-          case "III":
-          default:
-            return {
-              color: "#f65b5b",
-              weight: 1.5,
-              dashArray: "4, 4",
-              lineCap: "butt",
-            };
-        }
-      },
-    }).addTo(map);
+    // let pavingBikeways = L.geoJSON([], {
+    //   style: function (feature) {
+    //     switch (feature.properties.bike_class) {
+    //       case "IV":
+    //         return {
+    //           color: "#19c615",
+    //           weight: 5,
+    //           dashArray: "4, 4",
+    //           lineCap: "butt",
+    //         };
+    //       case "II":
+    //         return {
+    //           color: "#f0bd09",
+    //           weight: 3,
+    //           dashArray: "4, 4",
+    //           lineCap: "butt",
+    //         };
+    //       case "III":
+    //       default:
+    //         return {
+    //           color: "#f65b5b",
+    //           weight: 1.5,
+    //           dashArray: "4, 4",
+    //           lineCap: "butt",
+    //         };
+    //     }
+    //   },
+    // }).addTo(map);
 
     let sandagUpcoming = L.esri
       .featureLayer({
@@ -445,7 +445,7 @@
     [
       existingBikeways,
       sandagUpcoming,
-      pavingBikeways,
+      // pavingBikeways,
       pavings,
       upcomingCIP,
     ].forEach((layer) =>
@@ -458,8 +458,8 @@
     );
 
     const layers = {
-      [document.getElementById("paving-bikeway-legend").outerHTML]:
-        pavingBikeways,
+      // [document.getElementById("paving-bikeway-legend").outerHTML]:
+      //   pavingBikeways,
       [document.getElementById("sandag-legend").outerHTML]: sandagUpcoming,
       [document.getElementById("existing-legend").outerHTML]:
         existingBikeways,
