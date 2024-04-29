@@ -1,400 +1,401 @@
 <html>
-  <head>
-    <!-- Google tag (gtag.js) -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-743QGWFJ7N"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
 
-      gtag("config", "G-743QGWFJ7N");
-    </script>
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-743QGWFJ7N"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
 
-    <!-- HTML Meta Tags -->
-    <title>Upcoming San Diego Bikeways</title>
-    <meta
-      name="description"
-      content="Upcoming and existing bikeways, Street Repavings, and Capital Improvement Projects all on one map."
-    />
+    gtag("config", "G-743QGWFJ7N");
+  </script>
 
-    <!-- Facebook Meta Tags -->
-    <meta property="og:url" content="https://bikemap.connorproctor.com" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Upcoming San Diego Bikeways" />
-    <meta
-      property="og:description"
-      content="Upcoming and existing bikeways, Street Repavings, and Capital Improvement Projects all on one map."
-    />
-    <meta
-      property="og:image"
-      content="https://bikemap.connorproctor.com/social_preview.png"
-    />
+  <!-- HTML Meta Tags -->
+  <title>Upcoming San Diego Bikeways</title>
+  <meta name="description"
+    content="Upcoming and existing bikeways, Street Repavings, and Capital Improvement Projects all on one map." />
 
-    <!-- Twitter Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta property="twitter:domain" content="bikemap.connorproctor.com" />
-    <meta property="twitter:url" content="https://bikemap.connorproctor.com" />
-    <meta name="twitter:title" content="Upcoming San Diego Bikeways" />
-    <meta
-      name="twitter:description"
-      content="Upcoming and existing bikeways, Street Repavings, and Capital Improvement Projects all on one map."
-    />
-    <meta
-      name="twitter:image"
-      content="https://bikemap.connorproctor.com/social_preview.png"
-    />
+  <!-- Facebook Meta Tags -->
+  <meta property="og:url" content="https://bikemap.connorproctor.com" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Upcoming San Diego Bikeways" />
+  <meta property="og:description"
+    content="Upcoming and existing bikeways, Street Repavings, and Capital Improvement Projects all on one map." />
+  <meta property="og:image" content="https://bikemap.connorproctor.com/social_preview.png" />
 
-    <meta
-      name="viewport"
-      content="initial-scale=1,maximum-scale=1,user-scalable=no"
-    />
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta property="twitter:domain" content="bikemap.connorproctor.com" />
+  <meta property="twitter:url" content="https://bikemap.connorproctor.com" />
+  <meta name="twitter:title" content="Upcoming San Diego Bikeways" />
+  <meta name="twitter:description"
+    content="Upcoming and existing bikeways, Street Repavings, and Capital Improvement Projects all on one map." />
+  <meta name="twitter:image" content="https://bikemap.connorproctor.com/social_preview.png" />
 
-    <!-- Load Leaflet from CDN-->
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
-      integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
-      crossorigin=""
-    />
-    <script
-      src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
-      integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
-      crossorigin=""
-    ></script>
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
 
-    <!-- Load Esri Leaflet from CDN -->
-    <script src="https://unpkg.com/esri-leaflet@3.0.9/dist/esri-leaflet.js"></script>
+  <!-- Load Leaflet from CDN-->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+    integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+    crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+    integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+    crossorigin=""></script>
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
-      crossorigin="anonymous"
-    />
+  <!-- Load Esri Leaflet from CDN -->
+  <script src="https://unpkg.com/esri-leaflet@3.0.9/dist/esri-leaflet.js"></script>
 
-    <style>
-      *,
-      *::before,
-      *::after {
-        box-sizing: border-box;
-      }
-      * {
-        margin: 0;
-      }
-      html,
-      body {
-        height: 100%;
-      }
-      body {
-        line-height: 1.5;
-        -webkit-font-smoothing: antialiased;
-      }
-      img,
-      picture,
-      video,
-      canvas,
-      svg {
-        display: block;
-        max-width: 100%;
-      }
-      input,
-      button,
-      textarea,
-      select {
-        font: inherit;
-      }
-      p,
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
-        overflow-wrap: break-word;
-      }
-      #root,
-      #__next {
-        isolation: isolate;
-      }
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous" />
 
-      #map {
-        height: 75%;
-      }
-      .leaflet-control-layers-selector {
-        vertical-align: top;
-      }
-      .dot {
-        height: 0.8em;
-        width: 0.8em;
-        border-radius: 50%;
-        display: inline-block;
-      }
-      .max-width-wrapper {
-        margin: 0 auto;
-        max-width: 1100px;
-        padding: 0 16px;
-      }
-      small {
-        font-size: 0.75em;
-      }
-      .text-muted a {
-        color: inherit;
-      }
-      .layer-info {
-        max-width: 700px;
-      }
-      footer {
-        padding-top: 5px;
-        border-top: 1px solid #cccccc;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="max-width-wrapper">
-      <header>
-        <h1>San Diego Bikeways Map</h1>
-      </header>
-      <div>
-        <p>
-          Upcoming and existing bikeways, Street Repavings, and Capital
-          Improvement Projects (CIP) &#8212; all on one map. Including both
-          upcoming SANDAG and SD City bikeways.
-        </p>
-      </div>
-      <div id="map"></div>
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
 
-      <h3 class="mt-5">Map Layers</h3>
-      <div class="layer-info">
-        <div class="mb-3">
-          <h5 class="mb-0">
-            Upcoming City Repaving Bikeways
-            <small class="text-muted">Updated July 2022</small>
-          </h5>
-          <div class="ms-3">
-            <p class="m-0">
-              These are new bikeways that the city is planning to build as they
-              repave streets during FY2023 (July 2022-July 2023).
-            </p>
-          </div>
-        </div>
+    * {
+      margin: 0;
+    }
 
-        <div class="mb-3">
-          <h5 class="mb-0">
-            Upcoming SANDAG Bikeways
-            <small class="text-muted"
-              >Updated via
-              <a href="https://www.icommutesd.com/bike/BikeMap.aspx"
-                >iBikeMap</a
-              ></small
-            >
-          </h5>
-          <div class="ms-3">
-            <p class="m-0">
-              Bikeway construction planned by
-              <a href="https://sandag.org">SANDAG</a>. This dataset updates
-              automatically as SANDAG updates their maps.
-            </p>
-          </div>
-        </div>
+    html,
+    body {
+      height: 100%;
+    }
 
-        <div class="mb-3">
-          <h5 class="mb-0">
-            Existing Bikeways
-            <small class="text-muted"
-              >Updated via
-              <a href="https://www.icommutesd.com/bike/BikeMap.aspx"
-                >iBikeMap</a
-              ></small
-            >
-          </h5>
-          <div class="ms-3">
-            <p class="m-0">
-              Existing bikeways in the San Diego region. Does not include
-              sharrows (class II) because they don't really count as bike
-              infrastructure.
-            </p>
-          </div>
-        </div>
+    body {
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
 
-        <div class="mb-3">
-          <h5 class="mb-0">
-            Todd Gloria's &#x2728;Sexy&#x2728; Streets Projects
-            <small class="text-muted">Updated July 2022</small>
-          </h5>
-          <div class="ms-3">
-            <p class="m-0">
-              Special street repaving projects under the sexy street initiative.
-              Wouldn't the streets be even sexier with new bikeways?
-            </p>
-          </div>
-        </div>
+    img,
+    picture,
+    video,
+    canvas,
+    svg {
+      display: block;
+      max-width: 100%;
+    }
 
-        <div class="mb-3">
-          <h5 class="mb-0">
-            Upcoming City Street Repaving Projects
-            <small class="text-muted"
-              >Updated via
-              <a href="https://streets.sandiego.gov"
-                >City of SD Streets Map</a
-              ></small
-            >
-          </h5>
-          <div class="ms-3">
-            <p class="m-0">
-              The city likes to add new bikeways when they repave streets, so it
-              can be effective to advocate for new bikeways on streets that the
-              city is already planning to repave.
-            </p>
-          </div>
-        </div>
+    input,
+    button,
+    textarea,
+    select {
+      font: inherit;
+    }
 
-        <div class="mb-3">
-          <h5 class="mb-0">
-            Upcoming Capital Improvement Projects (CIP)
-            <small class="text-muted"
-              >Updated via
-              <a href="https://www.sandiego.gov/cip/projectinfo"
-                >City Projects Map</a
-              ></small
-            >
-          </h5>
-          <div class="ms-3">
-            <p class="m-0">
-              Upcoming city construction projects including major street
-              improvements, sewer and water-main replacements. CIP projects
-              often tear up streets and there's oppurtunity to advocate for new
-              bikeways during these projects.
-            </p>
-          </div>
-        </div>
-      </div>
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      overflow-wrap: break-word;
+    }
 
-      <footer class="text-center">
-        <small class="ms-3">
-          Feedback or suggestions? hmu
-          <a href="https://twitter.com/connorproctor">@ConnorProctor</a>
-        </small>
-      </footer>
+    #root,
+    #__next {
+      isolation: isolate;
+    }
+
+    #map {
+      height: 75%;
+    }
+
+    .leaflet-control-layers-selector {
+      vertical-align: top;
+    }
+
+    .dot {
+      height: 0.8em;
+      width: 0.8em;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .max-width-wrapper {
+      margin: 0 auto;
+      max-width: 1100px;
+      padding: 0 16px;
+    }
+
+    small {
+      font-size: 0.75em;
+    }
+
+    .text-muted a {
+      color: inherit;
+    }
+
+    .layer-info {
+      max-width: 700px;
+    }
+
+    footer {
+      padding-top: 5px;
+      border-top: 1px solid #cccccc;
+    }
+
+    .embedded .hide-when-embedded {
+      display: none;
+    }
+
+    .embedded .max-width-wrapper {
+      padding: 0;
+    }
+
+    .embedded #map {
+      height: 600px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="max-width-wrapper">
+    <header>
+      <h1 class="hide-when-embedded">San Diego Bikeways Map</h1>
+    </header>
+    <div>
+      <p>
+        Upcoming and existing bikeways, Street Repavings, and Capital
+        Improvement Projects (CIP) &#8212; all on one map. Including both
+        upcoming SANDAG and SD City bikeways.
+      </p>
     </div>
+    <div id="map"></div>
 
-    <!-- Hidden Legend Elements -->
-    <div id="legend-elements" style="display: none">
-      <div id="paving-bikeway-legend" class="d-inline-block">
-        <div>Upcoming City Repaving Bikeways (FY2023)</div>
-        <div class="ms-2">
-          <div class="dot" style="background-color: #19c615"></div>
-          Protected Bikeway (Class IV)
-        </div>
-        <div class="ms-2">
-          <div class="dot" style="background-color: #f0bd09"></div>
-          Unprotected Bike Lane (Class II)
-        </div>
-        <div class="ms-2">
-          <div class="dot" style="background-color: #f65b5b"></div>
-          Sharrow (Class III)
+    <h3 class="mt-5">Map Layers</h3>
+    <div class="layer-info">
+      <div class="mb-3">
+        <h5 class="mb-0">
+          Upcoming City Repaving Bikeways
+          <small class="text-muted">Updated July 2022</small>
+        </h5>
+        <div class="ms-3">
+          <p class="m-0">
+            These are new bikeways that the city is planning to build as they
+            repave streets during FY2023 (July 2022-July 2023).
+          </p>
         </div>
       </div>
-      <div id="sandag-legend" class="d-inline-block">
-        <div>Upcoming SANDAG Bikeways</div>
-      </div>
-      <div id="existing-legend" class="d-inline-block">
-        <div>Existing Bikeways</div>
-        <div class="ms-2">
-          <div class="dot" style="background-color: #c2e0c1"></div>
-          Protected Bikeway (Class IV and I)
-        </div>
-        <div class="ms-2">
-          <div class="dot" style="background-color: #e9d9a9"></div>
-          Unprotected Bike Lane (Class II and V)
-        </div>
-      </div>
-      <div id="paving-legend" class="d-inline-block">
-        <div>
-          <div class="dot" style="background-color: slategray"></div>
-          Upcoming City Street Repavings
+
+      <div class="mb-3">
+        <h5 class="mb-0">
+          Upcoming SANDAG Bikeways
+          <small class="text-muted">Updated via
+            <a href="https://www.icommutesd.com/bike/BikeMap.aspx">iBikeMap</a></small>
+        </h5>
+        <div class="ms-3">
+          <p class="m-0">
+            Bikeway construction planned by
+            <a href="https://sandag.org">SANDAG</a>. This dataset updates
+            automatically as SANDAG updates their maps.
+          </p>
         </div>
       </div>
-      <div id="sexy-legend" class="d-inline-block">
-        <div>
-          <div class="dot" style="background-color: DeepPink"></div>
-          Todd Gloria's &#x2728;Sexy&#x2728; Streets Projects
+
+      <div class="mb-3">
+        <h5 class="mb-0">
+          Existing Bikeways
+          <small class="text-muted">Updated via
+            <a href="https://www.icommutesd.com/bike/BikeMap.aspx">iBikeMap</a></small>
+        </h5>
+        <div class="ms-3">
+          <p class="m-0">
+            Existing bikeways in the San Diego region. Does not include
+            sharrows (class II) because they don't really count as bike
+            infrastructure.
+          </p>
         </div>
       </div>
-      <div id="upcoming-cip" class="d-inline-block">
-        <div>
-          <div class="dot" style="background-color: darkgray"></div>
+
+      <div class="mb-3">
+        <h5 class="mb-0">
+          Upcoming City Street Repaving Projects
+          <small class="text-muted">Updated via
+            <a href="https://streets.sandiego.gov">City of SD Streets Map</a></small>
+        </h5>
+        <div class="ms-3">
+          <p class="m-0">
+            The city likes to add new bikeways when they repave streets, so it
+            can be effective to advocate for new bikeways on streets that the
+            city is already planning to repave.
+          </p>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <h5 class="mb-0">
           Upcoming Capital Improvement Projects (CIP)
+          <small class="text-muted">Updated via
+            <a href="https://www.sandiego.gov/cip/projectinfo">City Projects Map</a></small>
+        </h5>
+        <div class="ms-3">
+          <p class="m-0">
+            Upcoming city construction projects including major street
+            improvements, sewer and water-main replacements. CIP projects
+            often tear up streets and there's oppurtunity to advocate for new
+            bikeways during these projects.
+          </p>
         </div>
       </div>
     </div>
 
-    <script>
-      function fetchJSON(url) {
-        return fetch(url).then(function (response) {
-          return response.json();
-        });
+    <footer class="text-center">
+      <small class="ms-3">
+        Feedback or suggestions? hmu
+        <a href="https://twitter.com/connorproctor">@ConnorProctor</a>
+      </small>
+    </footer>
+  </div>
+
+  <!-- Hidden Legend Elements -->
+  <div id="legend-elements" style="display: none">
+    <div id="paving-bikeway-legend" class="d-inline-block">
+      <div>Upcoming City Repaving Bikeways (FY2023)</div>
+      <div class="ms-2">
+        <div class="dot" style="background-color: #19c615"></div>
+        Protected Bikeway (Class IV)
+      </div>
+      <div class="ms-2">
+        <div class="dot" style="background-color: #f0bd09"></div>
+        Unprotected Bike Lane (Class II)
+      </div>
+      <div class="ms-2">
+        <div class="dot" style="background-color: #f65b5b"></div>
+        Sharrow (Class III)
+      </div>
+    </div>
+    <div id="sandag-legend" class="d-inline-block">
+      <div>Upcoming SANDAG Bikeways</div>
+    </div>
+    <div id="existing-legend" class="d-inline-block">
+      <div>Existing Bikeways</div>
+      <div class="ms-2">
+        <div class="dot" style="background-color: #c2e0c1"></div>
+        Protected Bikeway (Class IV and I)
+      </div>
+      <div class="ms-2">
+        <div class="dot" style="background-color: #e9d9a9"></div>
+        Unprotected Bike Lane (Class II and V)
+      </div>
+    </div>
+    <div id="paving-legend" class="d-inline-block">
+      <div>
+        <div class="dot" style="background-color: slategray"></div>
+        Upcoming City Street Repavings
+      </div>
+    </div>
+    <div id="upcoming-cip" class="d-inline-block">
+      <div>
+        <div class="dot" style="background-color: darkgray"></div>
+        Upcoming Capital Improvement Projects (CIP)
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function fetchJSON(url) {
+      return fetch(url).then(function (response) {
+        return response.json();
+      });
+    }
+
+    function resetLayerOrder() {
+      Object.values(layers).forEach((l) => l.bringToBack());
+    }
+
+    if (window.self != window.top) {
+      // In iFrame
+      document.body.classList.add("embedded");
+    }
+
+    var map = L.map("map", {
+      preferCanvas: false,
+    }).setView([32.7157, -117.1611], 12);
+    var myRenderer = L.canvas({ padding: 0.5 });
+
+    const base = L.tileLayer(
+      "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+      {
+        maxZoom: 19,
+        attribution:
+          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
       }
+    ).addTo(map);
 
-      function resetLayerOrder() {
-        Object.values(layers).forEach((l) => l.bringToBack());
-      }
+    let upcomingCIP = L.esri.featureLayer({
+      url: "https://webmaps.sandiego.gov/arcgis/rest/services/ECP_CIPTracking_CIPExternal/MapServer/1",
+      fetchAllFeature: true,
+      where: "CIP_STAT = 'Design' OR CIP_STAT = 'Planning'",
+      style: (feature) => {
+        return { color: "darkgray", weight: 1.5 };
+      },
+    });
 
-      var map = L.map("map", {
-        preferCanvas: false,
-      }).setView([32.7157, -117.1611], 12);
-      var myRenderer = L.canvas({ padding: 0.5 });
+    let pavings = L.esri.featureLayer({
+      url: "https://webmaps.sandiego.gov/arcgis/rest/services/Hosted/Planned_paving_projects/FeatureServer/0",
+      fetchAllFeature: true,
+      style: { color: "slategray", weight: 1.5 },
+    });
 
-      const base = L.tileLayer(
-        "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
-        {
-          maxZoom: 19,
-          attribution:
-            '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    let pavingBikeways = L.geoJSON([], {
+      style: function (feature) {
+        switch (feature.properties.bike_class) {
+          case "IV":
+            return {
+              color: "#19c615",
+              weight: 5,
+              dashArray: "4, 4",
+              lineCap: "butt",
+            };
+          case "II":
+            return {
+              color: "#f0bd09",
+              weight: 3,
+              dashArray: "4, 4",
+              lineCap: "butt",
+            };
+          case "III":
+          default:
+            return {
+              color: "#f65b5b",
+              weight: 1.5,
+              dashArray: "4, 4",
+              lineCap: "butt",
+            };
         }
-      ).addTo(map);
+      },
+    }).addTo(map);
 
-      let upcomingCIP = L.esri.featureLayer({
-        url: "https://webmaps.sandiego.gov/arcgis/rest/services/ECP_CIPTracking_CIPExternal/MapServer/1",
+    let sandagUpcoming = L.esri
+      .featureLayer({
+        url: "https://services1.arcgis.com/HG80xaIVT1z1OdO5/ArcGIS/rest/services/Bikeways_Coming_Soon/FeatureServer/2",
         fetchAllFeature: true,
-        where: "CIP_STAT = 'Design' OR CIP_STAT = 'Planning'",
         style: (feature) => {
-          return { color: "darkgray", weight: 1.5 };
-        },
-      });
-
-      let pavings = L.esri.featureLayer({
-        url: "https://webmaps.sandiego.gov/arcgis/rest/services/Hosted/Planned_paving_projects/FeatureServer/0",
-        fetchAllFeature: true,
-        style: { color: "slategray", weight: 1.5 },
-      });
-
-      let sexyStreets = L.geoJSON([], {
-        style: { color: "DeepPink", weight: 1.5 },
-      });
-
-      let pavingBikeways = L.geoJSON([], {
-        style: function (feature) {
-          switch (feature.properties.bike_class) {
-            case "IV":
+          switch (feature.properties["ROUTE"]) {
+            case 1:
+            case 4:
               return {
                 color: "#19c615",
                 weight: 5,
                 dashArray: "4, 4",
                 lineCap: "butt",
               };
-            case "II":
+            case 5:
+            case 2:
               return {
                 color: "#f0bd09",
                 weight: 3,
                 dashArray: "4, 4",
                 lineCap: "butt",
               };
-            case "III":
+            case 3:
             default:
               return {
                 color: "#f65b5b",
@@ -404,133 +405,96 @@
               };
           }
         },
-      }).addTo(map);
+      })
+      .addTo(map);
 
-      let sandagUpcoming = L.esri
-        .featureLayer({
-          url: "https://services1.arcgis.com/HG80xaIVT1z1OdO5/ArcGIS/rest/services/Bikeways_Coming_Soon/FeatureServer/2",
-          fetchAllFeature: true,
-          style: (feature) => {
-            switch (feature.properties["ROUTE"]) {
-              case 1:
-              case 4:
-                return {
-                  color: "#19c615",
-                  weight: 5,
-                  dashArray: "4, 4",
-                  lineCap: "butt",
-                };
-              case 5:
-              case 2:
-                return {
-                  color: "#f0bd09",
-                  weight: 3,
-                  dashArray: "4, 4",
-                  lineCap: "butt",
-                };
-              case 3:
-              default:
-                return {
-                  color: "#f65b5b",
-                  weight: 1.5,
-                  dashArray: "4, 4",
-                  lineCap: "butt",
-                };
-            }
-          },
-        })
-        .addTo(map);
+    let existingBikeways = L.esri
+      .featureLayer({
+        url: "https://services1.arcgis.com/HG80xaIVT1z1OdO5/ArcGIS/rest/services/iBikeMap/FeatureServer/14",
+        fetchAllFeature: true,
+        style: (feature) => {
+          switch (feature.properties["ROUTE"]) {
+            case 1:
+            case 4:
+              return {
+                color: "#19c615",
+                weight: 4,
+              };
+            case 5:
+            case 2:
+            // return {
+            //   color: "#e9d9a9",
+            //   weight: 2,
+            // };
+            case 3:
+            default:
+              // return {
+              //   color: "#f9bebe",
+              //   weight: 1,
+              // };
+              return {
+                color: "#c2e0c100",
+                weight: 0,
+              };
+          }
+        },
+        where: "ROUTE <> 3",
+      })
+      .addTo(map);
 
-      let existingBikeways = L.esri
-        .featureLayer({
-          url: "https://services1.arcgis.com/HG80xaIVT1z1OdO5/ArcGIS/rest/services/iBikeMap/FeatureServer/1",
-          fetchAllFeature: true,
-          style: (feature) => {
-            switch (feature.properties["ROUTE"]) {
-              case 1:
-              case 4:
-                return {
-                  color: "#c2e0c1",
-                  weight: 4,
-                };
-              case 5:
-              case 2:
-                return {
-                  color: "#e9d9a9",
-                  weight: 2,
-                };
-              case 3:
-              default:
-                return {
-                  color: "#f9bebe",
-                  weight: 1,
-                };
-            }
-          },
-          where: "ROUTE <> 3",
-        })
-        .addTo(map);
+    [
+      existingBikeways,
+      sandagUpcoming,
+      pavingBikeways,
+      pavings,
+      upcomingCIP,
+    ].forEach((layer) =>
+      layer.bindPopup((feature) => {
+        const tooltip = Object.entries(feature.feature.properties)
+          .map(([key, value]) => `<div><b>${key}</b>: ${value}</div>`)
+          .join(" ");
+        return tooltip;
+      })
+    );
 
-      [
-        existingBikeways,
-        sandagUpcoming,
+    const layers = {
+      [document.getElementById("paving-bikeway-legend").outerHTML]:
         pavingBikeways,
-        pavings,
-        upcomingCIP,
-        sexyStreets,
-      ].forEach((layer) =>
-        layer.bindPopup((feature) => {
-          const tooltip = Object.entries(feature.feature.properties)
-            .map(([key, value]) => `<div><b>${key}</b>: ${value}</div>`)
-            .join(" ");
-          return tooltip;
-        })
+      [document.getElementById("sandag-legend").outerHTML]: sandagUpcoming,
+      [document.getElementById("existing-legend").outerHTML]:
+        existingBikeways,
+      [document.getElementById("paving-legend").outerHTML]: pavings,
+      [document.getElementById("upcoming-cip").outerHTML]: upcomingCIP,
+    };
+    let layerControl = L.control
+      .layers({}, layers, { collapsed: true })
+      .addTo(map);
+    layerControl.expand();
+
+    const overlayBikewayReq = fetchJSON("/FY2023_overlay_bikeways.geojson");
+    overlayBikewayReq.then((r) => {
+      pavingBikeways.addData(
+        r["features"].map((f) => ({
+          ...f,
+          properties: { Type: "Overlay", ...f["properties"] },
+        }))
       );
+      resetLayerOrder();
+    });
 
-      const layers = {
-        [document.getElementById("paving-bikeway-legend").outerHTML]:
-          pavingBikeways,
-        [document.getElementById("sandag-legend").outerHTML]: sandagUpcoming,
-        [document.getElementById("existing-legend").outerHTML]:
-          existingBikeways,
-        [document.getElementById("sexy-legend").outerHTML]: sexyStreets,
-        [document.getElementById("paving-legend").outerHTML]: pavings,
-        [document.getElementById("upcoming-cip").outerHTML]: upcomingCIP,
-      };
-      let layerControl = L.control
-        .layers({}, layers, { collapsed: true })
-        .addTo(map);
-      layerControl.expand();
+    const slurryBikewayReq = fetchJSON("/FY2023_slurry_bikeways.geojson");
+    slurryBikewayReq.then((r) => {
+      pavingBikeways.addData(
+        r["features"].map((f) => ({
+          ...f,
+          properties: { Type: "Slurry", ...f["properties"] },
+        }))
+      );
+      resetLayerOrder();
+    });
 
-      const overlayBikewayReq = fetchJSON("/FY2023_overlay_bikeways.geojson");
-      overlayBikewayReq.then((r) => {
-        pavingBikeways.addData(
-          r["features"].map((f) => ({
-            ...f,
-            properties: { Type: "Overlay", ...f["properties"] },
-          }))
-        );
-        resetLayerOrder();
-      });
+    map.on("overlayadd", resetLayerOrder);
+  </script>
+</body>
 
-      const slurryBikewayReq = fetchJSON("/FY2023_slurry_bikeways.geojson");
-      slurryBikewayReq.then((r) => {
-        pavingBikeways.addData(
-          r["features"].map((f) => ({
-            ...f,
-            properties: { Type: "Slurry", ...f["properties"] },
-          }))
-        );
-        resetLayerOrder();
-      });
-
-      const sexyStreetsReq = fetchJSON("/sexy_streets_merged.geojson");
-      sexyStreetsReq.then((r) => {
-        sexyStreets.addData(r["features"]);
-        resetLayerOrder();
-      });
-
-      map.on("overlayadd", resetLayerOrder);
-    </script>
-  </body>
 </html>
